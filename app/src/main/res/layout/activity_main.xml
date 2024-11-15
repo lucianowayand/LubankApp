@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="30dp"
+        android:padding="30dp"
+        android:background="@drawable/rounded_login_ui"
+        android:backgroundTint="#FFF"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="16dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="Documento de Identificação"
+            android:layout_marginBottom="4dp"
+            android:textSize="16sp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:padding="10dp"
+            android:hint="CPF"
+            android:inputType="number"
+            android:maxLength="14"
+            android:textSize="20sp"
+            android:id="@+id/govRegCode_input"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="Senha"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="12dp"
+            android:textSize="16sp"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border"
+            android:padding="10dp"
+            android:hint="******"
+            android:textSize="20sp"
+            android:inputType="textPassword"
+            android:id="@+id/password_input"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="Login"
+            android:backgroundTint="#0077B6"
+            android:id="@+id/login_btn"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>
