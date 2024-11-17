@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">LubankApp</string>
+    <string name="app_icon_desc">Logo do aplicativo</string>
+
+    <string name="id_doc_label">Documento de Identificação</string>
+    <string name="id_doc_hint">CPF</string>
+    <string name="password_label">Senha</string>
+    <string name="password_hint">********</string>
+    <string name="login_btn_label">Login</string>
+
+    <string name="icon_desc">Icone de usuário</string>
+    <string name="txt_username">Olá, Luigi!</string>
 </resources>
