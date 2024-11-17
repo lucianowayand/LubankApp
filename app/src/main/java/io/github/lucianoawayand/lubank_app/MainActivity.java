@@ -1,6 +1,7 @@
 package io.github.lucianoawayand.lubank_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -58,9 +59,11 @@ public class MainActivity extends AppCompatActivity {
             govRegCodeInput.removeTextChangedListener(textWatcher);
 
             if (checkedId == R.id.radioButtonCpf) {
-                setMaskAndLength(MaskEditUtil.FORMAT_CPF, 14);  // Set CPF mask with max length
+                setMaskAndLength(MaskEditUtil.FORMAT_CPF, 14);
+                govRegCodeInput.setHint("CPF");
             } else if (checkedId == R.id.radioButtonCnpj) {
-                setMaskAndLength(MaskEditUtil.FORMAT_CNPJ, 18);  // Set CNPJ mask with max length
+                setMaskAndLength(MaskEditUtil.FORMAT_CNPJ, 18);
+                govRegCodeInput.setHint("CNPJ");
             }
 
             govRegCodeInput.setText(""); // Clear the input field when switching
@@ -121,7 +124,9 @@ public class MainActivity extends AppCompatActivity {
                     editor.putString("user", user.toString());
                     editor.apply();
 
-                    // Navigate to the next screen
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     try {
                         // Log the error response body (if available) as a string
