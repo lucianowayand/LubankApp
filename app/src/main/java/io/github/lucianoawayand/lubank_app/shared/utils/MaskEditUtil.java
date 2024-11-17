@@ -1,4 +1,4 @@
-package io.github.lucianoawayand.lubank_app.utils;
+package io.github.lucianoawayand.lubank_app.shared.utils;
 
 import android.text.Editable;
 import android.text.TextWatcher;

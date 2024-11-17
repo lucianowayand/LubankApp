@@ -1,4 +1,4 @@
-package io.github.lucianoawayand.lubank_app.config;
+package io.github.lucianoawayand.lubank_app.shared.config;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

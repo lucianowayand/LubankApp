@@ -1,4 +1,4 @@
-package io.github.lucianoawayand.lubank_app.domain.user;
+package io.github.lucianoawayand.lubank_app.shared.domain.user;
 
 public class LoginResponseDTO {
     public String token;

@@ -1,4 +1,4 @@
-package io.github.lucianoawayand.lubank_app;
+package io.github.lucianoawayand.lubank_app.Main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -20,12 +21,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import io.github.lucianoawayand.lubank_app.config.RetrofitClient;
-import io.github.lucianoawayand.lubank_app.domain.user.LoginRequestDTO;
-import io.github.lucianoawayand.lubank_app.domain.user.LoginResponseDTO;
-import io.github.lucianoawayand.lubank_app.domain.user.User;
-import io.github.lucianoawayand.lubank_app.services.UserService;
-import io.github.lucianoawayand.lubank_app.utils.MaskEditUtil;
+import io.github.lucianoawayand.lubank_app.Home.HomeActivity;
+import io.github.lucianoawayand.lubank_app.R;
+import io.github.lucianoawayand.lubank_app.shared.config.RetrofitClient;
+import io.github.lucianoawayand.lubank_app.shared.domain.user.LoginRequestDTO;
+import io.github.lucianoawayand.lubank_app.shared.domain.user.LoginResponseDTO;
+import io.github.lucianoawayand.lubank_app.shared.domain.user.User;
+import io.github.lucianoawayand.lubank_app.shared.services.UserService;
+import io.github.lucianoawayand.lubank_app.shared.utils.MaskEditUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup radioGroupCpfCnpj;
     private RadioButton radioButtonCpf;
     private RadioButton radioButtonCnpj;
+    private FrameLayout progressBarOverlay;
     private Button loginButton;
     private UserService userService;
     private TextWatcher textWatcher;
@@ -52,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         radioGroupCpfCnpj = findViewById(R.id.radioGroupCpfCnpj);
         radioButtonCpf = findViewById(R.id.radioButtonCpf);
         radioButtonCnpj = findViewById(R.id.radioButtonCnpj);
+        progressBarOverlay = findViewById(R.id.progressOverlay);
 
         setMaskAndLength(MaskEditUtil.FORMAT_CPF, 14);
 
@@ -105,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void performLogin(String email, String password) {
+        progressBarOverlay.setVisibility(View.VISIBLE);
+
         LoginRequestDTO loginRequest = new LoginRequestDTO(email, password);
 
         Call<LoginResponseDTO> call = userService.login(loginRequest);
@@ -132,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                         // Log the error response body (if available) as a string
                         String errorBody = response.errorBody() != null ? response.errorBody().string() : "Unknown error";
                         Log.e("LUBANK", "Error response: " + errorBody);
+                        progressBarOverlay.setVisibility(View.GONE);
                         Toast.makeText(MainActivity.this, "Login failed: " + errorBody, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Log.e("LUBANK", "Error parsing error body", e);
@@ -142,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure (Call < LoginResponseDTO > call, Throwable t){
                 Log.e("LUBANK", "Network error:" + t.getMessage());
+                progressBarOverlay.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this, "Login failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
