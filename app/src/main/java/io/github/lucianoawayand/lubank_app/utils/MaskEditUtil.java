@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 public class MaskEditUtil {
     public static final String FORMAT_CPF = "###.###.###-##";
+    public static final String FORMAT_CNPJ = "##.###.###/####-##";
     public static final String FORMAT_FONE = "(###)####-#####";
     public static final String FORMAT_CEP = "#####-###";
     public static final String FORMAT_DATE = "##/##/####";
@@ -16,12 +17,12 @@ public class MaskEditUtil {
      *
      * @param ediTxt
      * @param mask
-     * @return
+     * @return TextWatcher for applying the mask
      */
     public static TextWatcher mask(final EditText ediTxt, final String mask) {
         return new TextWatcher() {
-            boolean isUpdating;
-            String old = "";
+            boolean isUpdating = false;
+            String previousText = "";
 
             @Override
             public void afterTextChanged(final Editable s) {}
@@ -31,34 +32,49 @@ public class MaskEditUtil {
 
             @Override
             public void onTextChanged(final CharSequence s, final int start, final int before, final int count) {
-                final String str = MaskEditUtil.unmask(s.toString());
-                String mascara = "";
-                if (isUpdating) {
-                    old = str;
-                    isUpdating = false;
-                    return;
-                }
+                // Avoid recursion if we are already updating
+                if (isUpdating) return;
+
+                String unmaskedText = unmask(s.toString());
+                String formattedText = "";
                 int i = 0;
-                for (final char m : mask.toCharArray()) {
-                    if (m != '#' && str.length() > old.length()) {
-                        mascara += m;
-                        continue;
-                    }
-                    try {
-                        mascara += str.charAt(i);
-                    } catch (final Exception e) {
-                        break;
-                    }
-                    i++;
+
+                // Dynamically switch mask if CPF is longer than 11 characters
+                String currentMask = mask;
+                if (unmaskedText.length() > 11 && mask.equals(FORMAT_CPF)) {
+                    currentMask = FORMAT_CNPJ;
                 }
+
+                // Format based on the selected mask
+                for (char m : currentMask.toCharArray()) {
+                    if (m != '#' && unmaskedText.length() > i) {
+                        formattedText += m;
+                    } else {
+                        try {
+                            formattedText += unmaskedText.charAt(i);
+                        } catch (Exception e) {
+                            break;
+                        }
+                        i++;
+                    }
+                }
+
+                // Prevent infinite recursion
                 isUpdating = true;
-                ediTxt.setText(mascara);
-                ediTxt.setSelection(mascara.length());
+                ediTxt.setText(formattedText);
+                ediTxt.setSelection(formattedText.length());
+                isUpdating = false;
             }
         };
     }
 
     public static String unmask(final String s) {
-        return s.replaceAll("[.]", "").replaceAll("[-]", "").replaceAll("[/]", "").replaceAll("[(]", "").replaceAll("[ ]","").replaceAll("[:]", "").replaceAll("[)]", "");
+        return s.replaceAll("[.]", "")
+                .replaceAll("[-]", "")
+                .replaceAll("[/]", "")
+                .replaceAll("[(]", "")
+                .replaceAll("[ ]", "")
+                .replaceAll("[:]", "")
+                .replaceAll("[)]", "");
     }
 }

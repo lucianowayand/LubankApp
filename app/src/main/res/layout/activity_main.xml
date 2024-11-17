@@ -33,6 +33,7 @@
             android:layout_gravity="start"
             android:text="Documento de Identificação"
             android:layout_marginBottom="4dp"
+            android:textColor="@color/black"
             android:textSize="16sp"
             />
         <EditText
@@ -51,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
+            android:textColor="@color/black"
             android:text="Senha"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="12dp"
@@ -67,11 +69,38 @@
             android:id="@+id/password_input"
             />
 
+        <RadioGroup
+            android:id="@+id/radioGroupCpfCnpj"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="start"
+            android:layout_marginLeft="-4dp"
+            >
+
+            <RadioButton
+                android:id="@+id/radioButtonCpf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CPF"
+                android:textColor="@color/black"
+                app:buttonTint="@color/black"
+                android:checked="true" />
+
+            <RadioButton
+                android:id="@+id/radioButtonCnpj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                app:buttonTint="@color/black"
+                android:text="CNPJ" />
+        </RadioGroup>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
             android:text="Login"
+            android:textColor="@color/white"
             android:backgroundTint="#0077B6"
             android:id="@+id/login_btn"
             />
