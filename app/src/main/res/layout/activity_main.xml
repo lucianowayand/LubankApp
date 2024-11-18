@@ -107,11 +107,23 @@
             android:textColor="@color/white"
             android:backgroundTint="@color/air_force_blue"
             android:id="@+id/login_btn"
+            app:cornerRadius="4dp"
             />
+
+        <Button
+            android:id="@+id/register_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quero ser cliente"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            app:cornerRadius="4dp"
+            app:strokeColor="#D3D3D3"
+            app:strokeWidth="2dp" />
 
     </LinearLayout>
 
-    <!-- Full-screen ProgressBar overlay -->
     <FrameLayout
         android:id="@+id/progressOverlay"
         android:layout_width="match_parent"

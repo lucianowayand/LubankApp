@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register.RegisterActivity">
+
+    <RelativeLayout
+        android:id="@+id/page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_background"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="40dp"
+            android:paddingVertical="20dp"
+            android:background="@drawable/rounded_login_ui"
+            android:backgroundTint="@color/white"
+        >
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Registre-se"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="20dp"
+            />
+
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:text="Salvar"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/air_force_blue"
+                app:cornerRadius="4dp"
+                />
+
+            <Button
+                android:id="@+id/return_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:text="Já sou cliente."
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black"
+                app:cornerRadius="4dp"
+                app:strokeColor="#D3D3D3"
+                app:strokeWidth="2dp"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

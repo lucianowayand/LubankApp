@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import io.github.lucianoawayand.lubank_app.R;
-import io.github.lucianoawayand.lubank_app.adapter.ActionsAdapter;
+import io.github.lucianoawayand.lubank_app.Home.adapter.ActionsAdapter;
 import io.github.lucianoawayand.lubank_app.model.Action;
 
 public class HomeActivity extends AppCompatActivity {

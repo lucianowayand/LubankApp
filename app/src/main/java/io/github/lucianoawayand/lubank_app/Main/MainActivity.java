@@ -23,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import io.github.lucianoawayand.lubank_app.Home.HomeActivity;
 import io.github.lucianoawayand.lubank_app.R;
+import io.github.lucianoawayand.lubank_app.Register.RegisterActivity;
 import io.github.lucianoawayand.lubank_app.shared.config.RetrofitClient;
 import io.github.lucianoawayand.lubank_app.shared.domain.user.LoginRequestDTO;
 import io.github.lucianoawayand.lubank_app.shared.domain.user.LoginResponseDTO;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private UserService userService;
     private TextWatcher textWatcher;
+    private Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,16 @@ public class MainActivity extends AppCompatActivity {
                 String govRegCode = govRegCodeInput.getText().toString().replaceAll("[.\\-]","");
 
                 performLogin(govRegCode, passwordInput.getText().toString());
+            }
+        });
+
+        registerButton = findViewById(R.id.register_button);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

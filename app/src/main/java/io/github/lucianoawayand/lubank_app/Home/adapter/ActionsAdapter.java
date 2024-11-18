@@ -1,4 +1,4 @@
-package io.github.lucianoawayand.lubank_app.adapter;
+package io.github.lucianoawayand.lubank_app.Home.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,12 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.xmlpull.v1.XmlPullParser;
-
 import java.util.ArrayList;
-import java.util.List;
 
-import io.github.lucianoawayand.lubank_app.R;
 import io.github.lucianoawayand.lubank_app.databinding.ActionItemBinding;
 import io.github.lucianoawayand.lubank_app.model.Action;
 
