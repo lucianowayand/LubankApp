@@ -16,7 +16,7 @@
         android:layout_marginVertical="30dp"
         android:padding="30dp"
         android:background="@drawable/rounded_login_ui"
-        android:backgroundTint="#FFF"
+        android:backgroundTint="@color/white"
         android:gravity="center"
         android:orientation="vertical"
         android:id="@+id/loginForm"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="Documento de Identificação"
+            android:text="@string/id_doc_label"
             android:layout_marginBottom="4dp"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/border"
             android:padding="10dp"
-            android:hint="CPF"
+            android:hint="@string/id_doc_hint"
             android:inputType="number"
             android:maxLength="14"
             android:textSize="20sp"
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:textColor="@color/black"
-            android:text="Senha"
+            android:text="@string/password_label"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="12dp"
             android:textSize="16sp"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/border"
             android:padding="10dp"
-            android:hint="******"
+            android:hint="@string/password_hint"
             android:textSize="20sp"
             android:inputType="textPassword"
             android:textColor="@color/black"
@@ -86,7 +86,7 @@
                 android:id="@+id/radioButtonCpf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CPF"
+                android:text="@string/id_doc_hint"
                 android:textColor="@color/black"
                 app:buttonTint="@color/black"
                 android:checked="true" />
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 app:buttonTint="@color/black"
-                android:text="CNPJ" />
+                android:text="@string/id_company_doc" />
         </RadioGroup>
 
         <Button
@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:text="Login"
             android:textColor="@color/white"
-            android:backgroundTint="#0077B6"
+            android:backgroundTint="@color/air_force_blue"
             android:id="@+id/login_btn"
             />
 

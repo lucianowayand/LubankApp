@@ -7,7 +7,10 @@
     <string name="password_label">Senha</string>
     <string name="password_hint">********</string>
     <string name="login_btn_label">Login</string>
+    <string name="id_company_doc">CNPJ</string>
 
     <string name="icon_desc">Icone de usuário</string>
     <string name="txt_username">Olá, Luigi!</string>
+
+    <string name="txt_account_balance">Conta \n \n R$ 0,00</string>
 </resources>
