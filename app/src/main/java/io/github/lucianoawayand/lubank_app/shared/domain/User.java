@@ -1,4 +1,4 @@
-package io.github.lucianoawayand.lubank_app.shared.domain.user;
+package io.github.lucianoawayand.lubank_app.shared.domain;
 
 import com.google.gson.annotations.SerializedName;
 

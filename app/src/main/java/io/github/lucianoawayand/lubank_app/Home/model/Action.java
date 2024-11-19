@@ -1,4 +1,4 @@
-package io.github.lucianoawayand.lubank_app.model;
+package io.github.lucianoawayand.lubank_app.Home.model;
 
 public class Action {
 

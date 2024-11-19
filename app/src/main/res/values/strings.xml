@@ -20,4 +20,8 @@
     <string name="txt_under_development">No momento, nosso time está trabalhando \n nesta funcionalidade.</string>
 
     <string name="btn_return">Voltar</string>
+
+    <string name="register_title">Registre-se</string>
+    <string name="name_label">Nome</string>
+    <string name="email_label">Email</string>
 </resources>

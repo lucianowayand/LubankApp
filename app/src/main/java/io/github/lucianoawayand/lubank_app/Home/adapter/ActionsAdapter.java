@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import io.github.lucianoawayand.lubank_app.databinding.ActionItemBinding;
-import io.github.lucianoawayand.lubank_app.model.Action;
+import io.github.lucianoawayand.lubank_app.Home.model.Action;
 
 public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.ViewHolder> {
 

@@ -1,6 +1,8 @@
-package io.github.lucianoawayand.lubank_app.shared.domain.user;
+package io.github.lucianoawayand.lubank_app.Main.domain;
 
-public class LoginResponseDTO {
+import io.github.lucianoawayand.lubank_app.shared.domain.User;
+
+public class LoginResponseDto {
     public String token;
     public User user;
 

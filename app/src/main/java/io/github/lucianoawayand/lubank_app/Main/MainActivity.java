@@ -25,9 +25,9 @@ import io.github.lucianoawayand.lubank_app.Home.HomeActivity;
 import io.github.lucianoawayand.lubank_app.R;
 import io.github.lucianoawayand.lubank_app.Register.RegisterActivity;
 import io.github.lucianoawayand.lubank_app.shared.config.RetrofitClient;
-import io.github.lucianoawayand.lubank_app.shared.domain.user.LoginRequestDTO;
-import io.github.lucianoawayand.lubank_app.shared.domain.user.LoginResponseDTO;
-import io.github.lucianoawayand.lubank_app.shared.domain.user.User;
+import io.github.lucianoawayand.lubank_app.Main.domain.LoginRequestDto;
+import io.github.lucianoawayand.lubank_app.Main.domain.LoginResponseDto;
+import io.github.lucianoawayand.lubank_app.shared.domain.User;
 import io.github.lucianoawayand.lubank_app.shared.services.UserService;
 import io.github.lucianoawayand.lubank_app.shared.utils.MaskEditUtil;
 import retrofit2.Call;
@@ -121,20 +121,19 @@ public class MainActivity extends AppCompatActivity {
         govRegCodeInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
     }
 
-    private void performLogin(String email, String password) {
+    private void performLogin(String govRegCode, String password) {
         progressBarOverlay.setVisibility(View.VISIBLE);
 
-        LoginRequestDTO loginRequest = new LoginRequestDTO(email, password);
+        LoginRequestDto loginRequest = new LoginRequestDto(govRegCode, password);
 
-        Call<LoginResponseDTO> call = userService.login(loginRequest);
-        call.enqueue(new Callback<LoginResponseDTO>() {
+        Call<LoginResponseDto> call = userService.login(loginRequest);
+        call.enqueue(new Callback<LoginResponseDto>() {
             @Override
-            public void onResponse(Call<LoginResponseDTO> call, Response<LoginResponseDTO> response) {
+            public void onResponse(Call<LoginResponseDto> call, Response<LoginResponseDto> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    LoginResponseDTO loginResponse = response.body();
+                    LoginResponseDto loginResponse = response.body();
                     String token = loginResponse.getToken();
                     User user = loginResponse.getUser();
-                    Log.i("LUBANK", user.name);
 
                     // Store JWT token and user info in SharedPreferences
                     SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
@@ -160,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginResponseDTO> call, Throwable t) {
+            public void onFailure(Call<LoginResponseDto> call, Throwable t) {
                 Log.e("LUBANK", "Network error:" + t.getMessage());
                 progressBarOverlay.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this, "Login failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
