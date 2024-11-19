@@ -1,6 +1,8 @@
 package io.github.lucianoawayand.lubank_app.Home;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 
 import io.github.lucianoawayand.lubank_app.R;
 import io.github.lucianoawayand.lubank_app.Home.adapter.ActionsAdapter;
+import io.github.lucianoawayand.lubank_app.UnderDevelopment.UnderDevelopmentActivity;
 import io.github.lucianoawayand.lubank_app.model.Action;
 
 public class HomeActivity extends AppCompatActivity {
@@ -30,6 +33,15 @@ public class HomeActivity extends AppCompatActivity {
 
         ActionsAdapter actionsAdapter = new ActionsAdapter(this, actions);
         recyclerView.setAdapter(actionsAdapter);
+
+        View cardClickableLayout = findViewById(R.id.cardClickableLayout);
+        cardClickableLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, UnderDevelopmentActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private ArrayList<Action> createActionsList() {
