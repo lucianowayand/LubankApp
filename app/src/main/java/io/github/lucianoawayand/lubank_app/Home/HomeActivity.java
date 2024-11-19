@@ -1,6 +1,7 @@
 package io.github.lucianoawayand.lubank_app.Home;
 
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +35,9 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<Action> createActionsList() {
         ArrayList<Action> actions = new ArrayList<>();
 
-        actions.add(new Action(R.drawable.ic_dollasign, "Fazer transferência"));
+        actions.add(new Action(R.drawable.ic_dollasign, "Fazer depósito"));
+        actions.add(new Action(R.drawable.barcode, "Pagar boleto"));
+        actions.add(new Action(R.drawable.withdraw, "Sacar dinheiro"));
 
         return actions;
     }

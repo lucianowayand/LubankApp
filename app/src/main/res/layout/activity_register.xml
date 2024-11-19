@@ -11,54 +11,49 @@
         android:id="@+id/page"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/login_background"
-        >
+        android:background="@drawable/login_background">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_margin="40dp"
-            android:paddingVertical="20dp"
             android:background="@drawable/rounded_login_ui"
             android:backgroundTint="@color/white"
-        >
+            android:orientation="vertical"
+            android:paddingVertical="20dp">
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="Registre-se"
-                android:textSize="20dp"
-                android:textColor="@color/black"
                 android:layout_marginBottom="20dp"
-            />
+                android:text="Registre-se"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
             <Button
                 android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
+                android:backgroundTint="@color/air_force_blue"
                 android:text="Salvar"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/air_force_blue"
-                app:cornerRadius="4dp"
-                />
+                app:cornerRadius="4dp" />
 
             <Button
                 android:id="@+id/return_button"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:text="Já sou cliente."
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@color/black"
                 app:cornerRadius="4dp"
                 app:strokeColor="#D3D3D3"
-                app:strokeWidth="2dp"
-                />
+                app:strokeWidth="2dp" />
         </LinearLayout>
 
     </RelativeLayout>

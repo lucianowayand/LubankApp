@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void initialSetup(){
+    private void initialSetup() {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {

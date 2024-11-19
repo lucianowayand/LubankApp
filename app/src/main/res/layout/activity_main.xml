@@ -10,105 +10,100 @@
 
     <!-- LinearLayout for the login form -->
     <LinearLayout
+        android:id="@+id/loginForm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginHorizontal="30dp"
         android:layout_marginVertical="30dp"
-        android:padding="30dp"
         android:background="@drawable/rounded_login_ui"
         android:backgroundTint="@color/white"
         android:gravity="center"
         android:orientation="vertical"
-        android:id="@+id/loginForm"
-        android:layout_gravity="center">
+        android:padding="30dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo"
             android:layout_marginBottom="16dp"
-            />
+            android:src="@drawable/logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="@string/id_doc_label"
             android:layout_marginBottom="4dp"
+            android:text="@string/id_doc_label"
             android:textColor="@color/black"
-            android:textSize="16sp"
-            />
+            android:textSize="16sp" />
+
         <EditText
+            android:id="@+id/govRegCode_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border"
-            android:padding="10dp"
             android:hint="@string/id_doc_hint"
             android:inputType="number"
             android:maxLength="14"
-            android:textSize="20sp"
+            android:padding="10dp"
             android:textColor="@color/black"
-            android:id="@+id/govRegCode_input"
-            />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:textColor="@color/black"
-            android:text="@string/password_label"
-            android:layout_marginBottom="4dp"
             android:layout_marginTop="12dp"
-            android:textSize="16sp"
-            />
+            android:layout_marginBottom="4dp"
+            android:text="@string/password_label"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
         <EditText
+            android:id="@+id/password_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border"
-            android:padding="10dp"
             android:hint="@string/password_hint"
-            android:textSize="20sp"
             android:inputType="textPassword"
+            android:padding="10dp"
             android:textColor="@color/black"
-            android:id="@+id/password_input"
-            />
+            android:textSize="20sp" />
 
         <RadioGroup
             android:id="@+id/radioGroupCpfCnpj"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="start"
             android:layout_marginLeft="-4dp"
-            >
+            android:gravity="start"
+            android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radioButtonCpf"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="@string/id_doc_hint"
                 android:textColor="@color/black"
-                app:buttonTint="@color/black"
-                android:checked="true" />
+                app:buttonTint="@color/black" />
 
             <RadioButton
                 android:id="@+id/radioButtonCnpj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/id_company_doc"
                 android:textColor="@color/black"
-                app:buttonTint="@color/black"
-                android:text="@string/id_company_doc" />
+                app:buttonTint="@color/black" />
         </RadioGroup>
 
         <Button
+            android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/air_force_blue"
             android:text="Login"
             android:textColor="@color/white"
-            android:backgroundTint="@color/air_force_blue"
-            android:id="@+id/login_btn"
-            app:cornerRadius="4dp"
-            />
+            app:cornerRadius="4dp" />
 
         <Button
             android:id="@+id/register_button"
@@ -128,13 +123,13 @@
         android:id="@+id/progressOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:background="@android:color/white"
-        android:alpha="0.7"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:alpha="0.7"
+        android:background="@android:color/white"
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/loadingProgressBar"

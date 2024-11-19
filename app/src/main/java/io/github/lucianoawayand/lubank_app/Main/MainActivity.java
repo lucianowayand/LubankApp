@@ -79,11 +79,11 @@ public class MainActivity extends AppCompatActivity {
 
         passwordInput = findViewById(R.id.password_input);
         loginButton = findViewById(R.id.login_btn);
-        
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String govRegCode = govRegCodeInput.getText().toString().replaceAll("[.\\-]","");
+                String govRegCode = govRegCodeInput.getText().toString().replaceAll("[.\\-]", "");
 
                 performLogin(govRegCode, passwordInput.getText().toString());
             }
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         registerButton = findViewById(R.id.register_button);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View v) {
+            public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 finish();
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initialSetup(){
+    private void initialSetup() {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure (Call < LoginResponseDTO > call, Throwable t){
+            public void onFailure(Call<LoginResponseDTO> call, Throwable t) {
                 Log.e("LUBANK", "Network error:" + t.getMessage());
                 progressBarOverlay.setVisibility(View.GONE);
                 Toast.makeText(MainActivity.this, "Login failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
