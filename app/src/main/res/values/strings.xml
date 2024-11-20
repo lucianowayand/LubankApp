@@ -24,4 +24,7 @@
     <string name="register_title">Registre-se</string>
     <string name="name_label">Nome</string>
     <string name="email_label">Email</string>
+
+    <string name="deposit_verify_information">Confira as informações abaixo para gerar seu boleto bancário:</string>
+    <string name="deposit_due_dates">Lembre-se: O valor fica disponível na sua carteira em até 2 dias úteis (finais de semana e feriados não contam)</string>
 </resources>

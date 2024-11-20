@@ -7,10 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".Transactions.SendTransactionActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
+        android:orientation="vertical"
         android:paddingHorizontal="10sp"
         android:paddingVertical="20sp">
 
@@ -37,6 +38,44 @@
                 android:textSize="24sp" />
         </LinearLayout>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="580dp"
+            android:layout_marginTop="8sp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Qual valor deseja depositar?"
+                android:textColor="@color/black"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/money_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 0,00"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/continue_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/air_force_blue"
+                android:text="Continuar"
+                android:textColor="@color/white"
+                app:cornerRadius="4dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
