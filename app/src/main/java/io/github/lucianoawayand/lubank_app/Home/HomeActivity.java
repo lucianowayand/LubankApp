@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
+import io.github.lucianoawayand.lubank_app.Deposits.DepositsActivity;
 import io.github.lucianoawayand.lubank_app.Home.model.Action;
 import io.github.lucianoawayand.lubank_app.R;
 import io.github.lucianoawayand.lubank_app.Home.adapter.ActionsAdapter;
@@ -63,7 +64,6 @@ public class HomeActivity extends AppCompatActivity {
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
 
-
         // Setup RecyclerView for Action cards
         RecyclerView recyclerView = findViewById(R.id.recyclerViewActions);
         ArrayList<Action> actions = createActionsList();
@@ -102,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
         ArrayList<Action> actions = new ArrayList<>();
 
         actions.add(new Action(R.drawable.transfer, "Transferir", SendTransactionActivity.class));
-        actions.add(new Action(R.drawable.ic_dollasign, "Fazer depósito", UnderDevelopmentActivity.class));
+        actions.add(new Action(R.drawable.ic_dollasign, "Fazer depósito", DepositsActivity.class));
         actions.add(new Action(R.drawable.barcode, "Pagar boleto", UnderDevelopmentActivity.class));
         actions.add(new Action(R.drawable.withdraw, "Sacar dinheiro", UnderDevelopmentActivity.class));
 

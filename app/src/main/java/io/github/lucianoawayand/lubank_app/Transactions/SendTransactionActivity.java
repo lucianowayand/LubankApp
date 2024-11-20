@@ -80,7 +80,7 @@ public class SendTransactionActivity extends AppCompatActivity {
         runOnUiThread(() -> {
             String receiverGovRegCode = govRegCodeInput.getText().toString().replaceAll("[.\\-]", "");
             Double transferAmount = MaskEditUtil.parseMoneyToDouble(amountInput.getText().toString());
-            Log.e("LUBANK", transferAmount.toString());
+
             if (transferAmount > accountBalance) {
                 Toast.makeText(SendTransactionActivity.this, "Não é possivel transferir mais que o saldo atual.", Toast.LENGTH_SHORT).show();
                 return;
