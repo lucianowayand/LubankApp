@@ -41,11 +41,66 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80sp"
+            android:orientation="vertical"
             android:paddingHorizontal="20sp">
 
             <io.github.lucianoawayand.lubank_app.shared.custom_components.GovRegInputView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginBottom="4sp"
+                android:text="Quantia"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/ammount_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="name"
+                android:background="@drawable/border"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:text="R$ 0,00"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4sp"
+                android:layout_marginBottom="4sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="Saldo na carteira: "
+                    android:textColor="#A3A3A3"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/balance_ammount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="-"
+                    android:textColor="#A3A3A3"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submit_transaction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/air_force_blue"
+                android:text="Enviar"
+                android:textColor="@color/white"
+                app:cornerRadius="4dp" />
 
         </LinearLayout>
 
