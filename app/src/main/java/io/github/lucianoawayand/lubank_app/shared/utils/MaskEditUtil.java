@@ -90,6 +90,25 @@ public class MaskEditUtil {
         return format.format(value);
     }
 
+    public static Double parseMoneyToDouble(String formattedValue) {
+        if (formattedValue == null || formattedValue.isEmpty()) {
+            return 0.0; // Default to 0.0 for empty or null input
+        }
+
+        try {
+            // Remove formatting symbols and convert to a Double
+            String numericValue = formattedValue
+                    .replace("R$", "") // Remove currency symbol
+                    .replace(".", "")  // Remove thousand separator
+                    .replace(",", ".") // Replace decimal comma with dot
+                    .trim();           // Remove leading/trailing whitespace
+            return Double.parseDouble(numericValue);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return 0.0; // Fallback to 0.0 on error
+        }
+    }
+
     // Apply other types of masks (e.g., CPF, CNPJ)
     private static String applyMask(String unmaskedText, String mask) {
         String formattedText = "";
