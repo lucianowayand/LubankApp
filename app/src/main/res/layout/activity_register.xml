@@ -11,8 +11,8 @@
         android:id="@+id/page"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:background="@drawable/login_background">
+        android:background="@drawable/login_background"
+        android:gravity="center">
 
         <LinearLayout
             android:id="@+id/loginForm"
@@ -44,16 +44,17 @@
                 android:text="@string/name_label"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
+
             <EditText
                 android:id="@+id/name_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:autofillHints="name"
                 android:background="@drawable/border"
                 android:inputType="textPersonName"
                 android:padding="10dp"
                 android:textColor="@color/black"
-                android:layout_marginBottom="8dp"
                 android:textSize="16sp" />
 
             <TextView
@@ -63,16 +64,17 @@
                 android:text="@string/email_label"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
+
             <EditText
                 android:id="@+id/email_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:autofillHints="emailAddress"
                 android:background="@drawable/border"
                 android:inputType="textEmailAddress"
                 android:padding="10dp"
                 android:textColor="@color/black"
-                android:layout_marginBottom="8dp"
                 android:textSize="16sp" />
 
             <TextView
@@ -83,65 +85,23 @@
                 android:text="@string/password_label"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
+
             <EditText
                 android:id="@+id/password_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:autofillHints="password"
                 android:background="@drawable/border"
                 android:hint="@string/password_hint"
                 android:inputType="textPassword"
                 android:padding="10dp"
                 android:textColor="@color/black"
-                android:layout_marginBottom="8dp"
                 android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginBottom="4dp"
-                android:text="@string/id_doc_label"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/govRegCode_input"
+            <io.github.lucianoawayand.lubank_app.shared.custom_components.GovRegInputView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border"
-                android:hint="@string/id_doc_hint"
-                android:inputType="number"
-                android:maxLength="14"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupCpfCnpj"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="-4dp"
-                android:gravity="start"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radioButtonCpf"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/id_doc_hint"
-                    android:textColor="@color/black"
-                    app:buttonTint="@color/black" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonCnpj"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/id_company_doc"
-                    android:textColor="@color/black"
-                    app:buttonTint="@color/black" />
-            </RadioGroup>
+                android:layout_height="match_parent" />
 
             <Button
                 android:id="@+id/register_button"

@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import io.github.lucianoawayand.lubank_app.Home.model.Action;
 import io.github.lucianoawayand.lubank_app.R;
 import io.github.lucianoawayand.lubank_app.Home.adapter.ActionsAdapter;
+import io.github.lucianoawayand.lubank_app.Transactions.SendTransactionActivity;
 import io.github.lucianoawayand.lubank_app.UnderDevelopment.UnderDevelopmentActivity;
 import io.github.lucianoawayand.lubank_app.shared.config.RetrofitClient;
 import io.github.lucianoawayand.lubank_app.shared.domain.User;
@@ -80,6 +81,7 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<Action> createActionsList() {
         ArrayList<Action> actions = new ArrayList<>();
 
+        actions.add(new Action(R.drawable.transfer, "Transferir", SendTransactionActivity.class));
         actions.add(new Action(R.drawable.ic_dollasign, "Fazer depósito", UnderDevelopmentActivity.class));
         actions.add(new Action(R.drawable.barcode, "Pagar boleto", UnderDevelopmentActivity.class));
         actions.add(new Action(R.drawable.withdraw, "Sacar dinheiro", UnderDevelopmentActivity.class));

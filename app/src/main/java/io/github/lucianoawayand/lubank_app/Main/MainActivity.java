@@ -30,6 +30,7 @@ import androidx.security.crypto.MasterKey;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+
 import androidx.biometric.BiometricPrompt;
 import androidx.biometric.BiometricManager;
 
@@ -51,13 +52,9 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     private EditText govRegCodeInput;
     private EditText passwordInput;
-    private RadioGroup radioGroupCpfCnpj;
-    private RadioButton radioButtonCpf;
-    private RadioButton radioButtonCnpj;
     private FrameLayout progressBarOverlay;
     private Button loginButton;
     private UserService userService;
-    private TextWatcher textWatcher;
     private Button registerButton;
     private boolean hasBiometricAccess;
 
@@ -71,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
         userService = RetrofitClient.getClient(this).create(UserService.class);
 
         govRegCodeInput = findViewById(R.id.govRegCode_input);
-        radioGroupCpfCnpj = findViewById(R.id.radioGroupCpfCnpj);
-        radioButtonCpf = findViewById(R.id.radioButtonCpf);
-        radioButtonCnpj = findViewById(R.id.radioButtonCnpj);
         progressBarOverlay = findViewById(R.id.progressOverlay);
         passwordInput = findViewById(R.id.password_input);
         loginButton = findViewById(R.id.login_btn);
@@ -98,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         handleExistingSession();
-
-        handleCnpjCpfToggle();
     }
 
     private void initialSetup() {
@@ -135,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         govRegCodeInput.setText(userGovRegCode);
 
         if (hasBiometricAccess) {
-            Log.i("LUBANK","Has biometric access");
+            Log.i("LUBANK", "Has biometric access");
             Executor executor = Executors.newSingleThreadExecutor();
 
             BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
@@ -194,35 +186,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             throw new RuntimeException("Failed to initialize EncryptedSharedPreferences", e);
         }
-    }
-
-    private void setMaskAndLength(String mask, int maxLength) {
-        // Remove existing TextWatcher and add the new one
-        govRegCodeInput.removeTextChangedListener(textWatcher);
-        textWatcher = MaskEditUtil.mask(govRegCodeInput, mask);
-        govRegCodeInput.addTextChangedListener(textWatcher);
-
-        // Set the max length for the EditText
-        govRegCodeInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-    }
-
-    private void handleCnpjCpfToggle() {
-        setMaskAndLength(MaskEditUtil.FORMAT_CPF, 14);
-
-        radioGroupCpfCnpj.setOnCheckedChangeListener((group, checkedId) -> {
-            govRegCodeInput.removeTextChangedListener(textWatcher);
-
-            if (checkedId == R.id.radioButtonCpf) {
-                setMaskAndLength(MaskEditUtil.FORMAT_CPF, 14);
-                govRegCodeInput.setHint("CPF");
-            } else if (checkedId == R.id.radioButtonCnpj) {
-                setMaskAndLength(MaskEditUtil.FORMAT_CNPJ, 18);
-                govRegCodeInput.setHint("CNPJ");
-            }
-
-            govRegCodeInput.setText(""); // Clear the input field when switching
-            govRegCodeInput.addTextChangedListener(textWatcher);  // Re-add the TextWatcher
-        });
     }
 
     private void performLogin(String govRegCode, String password) {

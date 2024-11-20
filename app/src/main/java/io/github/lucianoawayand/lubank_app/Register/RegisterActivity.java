@@ -42,9 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText passwordInput;
     private EditText emailInput;
     private EditText nameInput;
-    private RadioGroup radioGroupCpfCnpj;
-    private RadioButton radioButtonCpf;
-    private RadioButton radioButtonCnpj;
     private TextWatcher textWatcher;
     private UserService userService;
 
@@ -61,9 +58,6 @@ public class RegisterActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.password_input);
         nameInput = findViewById(R.id.name_input);
         emailInput = findViewById(R.id.email_input);
-        radioGroupCpfCnpj = findViewById(R.id.radioGroupCpfCnpj);
-        radioButtonCpf = findViewById(R.id.radioButtonCpf);
-        radioButtonCnpj = findViewById(R.id.radioButtonCnpj);
         progressBarOverlay = findViewById(R.id.progressOverlay);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -84,23 +78,6 @@ public class RegisterActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        setMaskAndLength(MaskEditUtil.FORMAT_CPF, 14);
-
-        radioGroupCpfCnpj.setOnCheckedChangeListener((group, checkedId) -> {
-            govRegCodeInput.removeTextChangedListener(textWatcher);
-
-            if (checkedId == R.id.radioButtonCpf) {
-                setMaskAndLength(MaskEditUtil.FORMAT_CPF, 14);
-                govRegCodeInput.setHint("CPF");
-            } else if (checkedId == R.id.radioButtonCnpj) {
-                setMaskAndLength(MaskEditUtil.FORMAT_CNPJ, 18);
-                govRegCodeInput.setHint("CNPJ");
-            }
-
-            govRegCodeInput.setText(""); // Clear the input field when switching
-            govRegCodeInput.addTextChangedListener(textWatcher);  // Re-add the TextWatcher
-        });
     }
 
     private void initialSetup() {
@@ -111,16 +88,6 @@ public class RegisterActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-    }
-
-    private void setMaskAndLength(String mask, int maxLength) {
-        // Remove existing TextWatcher and add the new one
-        govRegCodeInput.removeTextChangedListener(textWatcher);
-        textWatcher = MaskEditUtil.mask(govRegCodeInput, mask);
-        govRegCodeInput.addTextChangedListener(textWatcher);
-
-        // Set the max length for the EditText
-        govRegCodeInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
     }
 
     private void performRegistration(CreateUserRequestDto dto) {

@@ -16,6 +16,9 @@
         android:theme="@style/Theme.LubankApp"
         tools:targetApi="31">
         <activity
+            android:name=".Transactions.SendTransactionActivity"
+            android:exported="false" />
+        <activity
             android:name=".Register.RegisterActivity"
             android:exported="false" />
         <activity
