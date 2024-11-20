@@ -33,6 +33,8 @@ import java.util.concurrent.Executors;
 import androidx.biometric.BiometricPrompt;
 import androidx.biometric.BiometricManager;
 
+import com.google.gson.Gson;
+
 import io.github.lucianoawayand.lubank_app.Home.HomeActivity;
 import io.github.lucianoawayand.lubank_app.R;
 import io.github.lucianoawayand.lubank_app.Register.RegisterActivity;
@@ -241,7 +243,9 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("jwt_token", token);
-                        editor.putString("user", user.toString());
+                        Gson gson = new Gson();
+                        String userJson = gson.toJson(user); // Serialize User to JSON
+                        editor.putString("user", userJson);  // Save JSON string
                         editor.apply();
 
                         SharedPreferences securePrefs = getEncryptedSharedPreferences();

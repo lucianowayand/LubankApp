@@ -1,6 +1,7 @@
 package io.github.lucianoawayand.lubank_app.Home.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,6 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.ViewHold
 
     private final Context context;
     private final ArrayList<Action> actions;
-    private ItemClickListener mClickListener;
 
 
     // data is passed into the constructor
@@ -29,6 +29,7 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.ViewHold
     }
 
     // inflates the row layout from xml when needed
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate the layout using View Binding
@@ -41,8 +42,14 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Bind data to the ViewHolder
         Action action = actions.get(position);
+
         holder.icon.setImageResource(action.getIcon());
         holder.title.setText(action.getTitle());
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, action.getTargetActivity());
+            context.startActivity(intent);
+        });
     }
 
     // total number of rows
@@ -53,7 +60,7 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.ViewHold
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView icon;
         private final TextView title;
 
@@ -61,24 +68,6 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.ViewHold
             super(binding.getRoot());
             this.icon = binding.idActionIcon;
             this.title = binding.txtActionTitle;
-
-            // Set click listener for the item view
-            itemView.setOnClickListener(this);
         }
-
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-        }
-    }
-
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
     }
 }

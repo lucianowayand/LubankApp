@@ -34,12 +34,12 @@
             app:layout_constraintTop_toTopOf="@id/containerCircle" />
 
         <TextView
+            android:id="@+id/txtHelloUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
-            android:text="@string/txt_username"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -71,10 +71,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/txtAccountBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:text="@string/txt_account_balance"
         android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold" />

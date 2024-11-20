@@ -1,4 +1,5 @@
 package io.github.lucianoawayand.lubank_app.shared.services;
+
 import io.github.lucianoawayand.lubank_app.Main.domain.LoginRequestDto;
 import io.github.lucianoawayand.lubank_app.Main.domain.LoginResponseDto;
 import io.github.lucianoawayand.lubank_app.Register.domain.CreateUserRequestDto;
@@ -18,6 +19,9 @@ public interface UserService {
 
     @GET("api/v1/users")
     Call<User> getUserInformation();
+
+    @GET("/api/v1/transactions/balance")
+    Call<Double> getBalance();
 }
 
 
