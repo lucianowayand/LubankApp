@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
-
 import io.github.lucianoawayand.lubank_app.Home.model.Action;
 import io.github.lucianoawayand.lubank_app.R;
 import io.github.lucianoawayand.lubank_app.Home.adapter.ActionsAdapter;
@@ -30,8 +29,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+
 public class HomeActivity extends AppCompatActivity {
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private TransactionService transactionService;
     private TextView txtAccountBalance;
 
 
@@ -40,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        TransactionService transactionService = RetrofitClient.getClient(this).create(TransactionService.class);
+        transactionService = RetrofitClient.getClient(this).create(TransactionService.class);
 
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
@@ -56,8 +60,11 @@ public class HomeActivity extends AppCompatActivity {
         txtHelloUser.setText(greeting);
 
         txtAccountBalance = findViewById(R.id.txtAccountBalance);
-        setAccountBalance(transactionService);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
+
+
+        // Setup RecyclerView for Action cards
         RecyclerView recyclerView = findViewById(R.id.recyclerViewActions);
         ArrayList<Action> actions = createActionsList();
         LinearLayoutManager layoutManager
@@ -68,13 +75,26 @@ public class HomeActivity extends AppCompatActivity {
         ActionsAdapter actionsAdapter = new ActionsAdapter(this, actions);
         recyclerView.setAdapter(actionsAdapter);
 
+        setupCardClickListener();
+
+        setAccountBalance();
+
+        swipeRefreshLayout.setOnRefreshListener(this::refreshData);
+    }
+
+    private void refreshData() {
+        setAccountBalance();
+
+        Log.d("Refreshing", "Data updated!");
+
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void setupCardClickListener() {
         View cardClickableLayout = findViewById(R.id.cardClickableLayout);
-        cardClickableLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, UnderDevelopmentActivity.class);
-                startActivity(intent);
-            }
+        cardClickableLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, UnderDevelopmentActivity.class);
+            startActivity(intent);
         });
     }
 
@@ -89,7 +109,7 @@ public class HomeActivity extends AppCompatActivity {
         return actions;
     }
 
-    private void setAccountBalance(TransactionService transactionService) {
+    private void setAccountBalance() {
         Call<Double> call = transactionService.getBalance();
         call.enqueue(new Callback<Double>() {
             @Override
