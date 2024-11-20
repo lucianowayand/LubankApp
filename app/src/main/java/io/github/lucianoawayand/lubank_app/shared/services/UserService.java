@@ -19,9 +19,6 @@ public interface UserService {
 
     @GET("api/v1/users")
     Call<User> getUserInformation();
-
-    @GET("/api/v1/transactions/balance")
-    Call<Double> getBalance();
 }
 
 

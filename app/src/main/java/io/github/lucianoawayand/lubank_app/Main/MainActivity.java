@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         initialSetup();
         handleBiometrics();
 
-        userService = RetrofitClient.getClient().create(UserService.class);
+        userService = RetrofitClient.getClient(this).create(UserService.class);
 
         govRegCodeInput = findViewById(R.id.govRegCode_input);
         radioGroupCpfCnpj = findViewById(R.id.radioGroupCpfCnpj);

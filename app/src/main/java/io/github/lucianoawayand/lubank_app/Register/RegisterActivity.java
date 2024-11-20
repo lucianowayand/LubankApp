@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initialSetup();
 
-        userService = RetrofitClient.getClient().create(UserService.class);
+        userService = RetrofitClient.getClient(this).create(UserService.class);
 
         registerButton = findViewById(R.id.register_button);
         returnButton = findViewById(R.id.return_button);

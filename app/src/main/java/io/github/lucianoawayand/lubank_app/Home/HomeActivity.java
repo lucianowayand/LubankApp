@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,15 +22,24 @@ import io.github.lucianoawayand.lubank_app.Home.model.Action;
 import io.github.lucianoawayand.lubank_app.R;
 import io.github.lucianoawayand.lubank_app.Home.adapter.ActionsAdapter;
 import io.github.lucianoawayand.lubank_app.UnderDevelopment.UnderDevelopmentActivity;
+import io.github.lucianoawayand.lubank_app.shared.config.RetrofitClient;
 import io.github.lucianoawayand.lubank_app.shared.domain.User;
-import io.github.lucianoawayand.lubank_app.shared.services.UserService;
+import io.github.lucianoawayand.lubank_app.shared.services.TransactionService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private TextView txtAccountBalance;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        TransactionService transactionService = RetrofitClient.getClient(this).create(TransactionService.class);
 
         Gson gson = new Gson();
         SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
@@ -44,10 +54,8 @@ public class HomeActivity extends AppCompatActivity {
         String greeting = (user != null) ? "Olá " + user.getName() + "!" : "Olá, visitante!";
         txtHelloUser.setText(greeting);
 
-        TextView txtAccountBalance = findViewById(R.id.txtAccountBalance);
-        double accountBalance = 0.0;
-        String accountBalanceText = String.format("Conta \n\n R$%.2f", accountBalance);
-        txtAccountBalance.setText(accountBalanceText);
+        txtAccountBalance = findViewById(R.id.txtAccountBalance);
+        setAccountBalance(transactionService);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewActions);
         ArrayList<Action> actions = createActionsList();
@@ -77,5 +85,27 @@ public class HomeActivity extends AppCompatActivity {
         actions.add(new Action(R.drawable.withdraw, "Sacar dinheiro", UnderDevelopmentActivity.class));
 
         return actions;
+    }
+
+    private void setAccountBalance(TransactionService transactionService) {
+        Call<Double> call = transactionService.getBalance();
+        call.enqueue(new Callback<Double>() {
+            @Override
+            public void onResponse(@NonNull Call<Double> call, @NonNull Response<Double> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    double accountBalance = response.body();
+                    String accountBalanceText = String.format("Conta \n\n R$%.2f", accountBalance);
+                    txtAccountBalance.setText(accountBalanceText);
+                } else {
+                    Log.d("GetBalance", "Error getting balance");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Double> call, Throwable t) {
+                Log.d("GetBalance", "Error getting balance");
+            }
+        });
     }
 }
