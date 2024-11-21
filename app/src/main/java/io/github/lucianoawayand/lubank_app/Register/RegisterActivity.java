@@ -21,6 +21,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.gson.Gson;
+
 import io.github.lucianoawayand.lubank_app.Home.HomeActivity;
 import io.github.lucianoawayand.lubank_app.Main.MainActivity;
 import io.github.lucianoawayand.lubank_app.R;
@@ -63,8 +65,11 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String govRegCode = govRegCodeInput.getText().toString().replaceAll("[.\\-]", "");
+                String govRegCode = govRegCodeInput.getText().toString().replaceAll("[\\\\/.-]", "");
+                Log.e("LUBANK", govRegCode);
                 CreateUserRequestDto createUserDto = new CreateUserRequestDto(govRegCode, passwordInput.getText().toString(), emailInput.getText().toString(), nameInput.getText().toString());
+
+                Log.e("LUBANK", createUserDto.email + " " + createUserDto.govRegCode + " " + createUserDto.name + " " + createUserDto.password);
 
                 performRegistration(createUserDto);
             }
@@ -106,7 +111,10 @@ public class RegisterActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("jwt_token", token);
-                    editor.putString("user", user.toString());
+
+                    Gson gson = new Gson();
+                    String userJson = gson.toJson(user);
+                    editor.putString("user", userJson);
                     editor.apply();
 
                     Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
@@ -114,11 +122,11 @@ public class RegisterActivity extends AppCompatActivity {
                     finish();
                 } else {
                     try {
-                        // Log the error response body (if available) as a string
-                        String errorBody = response.errorBody() != null ? response.errorBody().string() : "Unknown error";
-                        Log.e("LUBANK", "Error response: " + errorBody);
+                        // Log the raw response body as a string for debugging
+                        String rawResponseBody = response.errorBody() != null ? response.errorBody().string() : "Unknown error";
+                        Log.e("LUBANK", "Error response: " + rawResponseBody);
                         progressBarOverlay.setVisibility(View.GONE);
-                        Toast.makeText(RegisterActivity.this, "Register failed: " + errorBody, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Register failed: " + rawResponseBody, Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         Log.e("LUBANK", "Error parsing error body", e);
                     }
