@@ -4,6 +4,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class MaskEditUtil {
     public static final String FORMAT_CPF = "###.###.###-##";
     public static final String FORMAT_CNPJ = "##.###.###/####-##";
@@ -88,6 +93,56 @@ public class MaskEditUtil {
 
         java.text.DecimalFormat format = new java.text.DecimalFormat("R$ #,##0.00");
         return format.format(value);
+    }
+
+    /**
+     * Formats a string as CPF.
+     *
+     * @param cpf Unformatted CPF string (only digits)
+     * @return Formatted CPF string (e.g., 123.456.789-00)
+     */
+    public static String formatCPF(String cpf) {
+        if (cpf == null) return "";
+        String unmaskedCpf = unmask(cpf); // Remove any existing formatting
+        return applyMask(unmaskedCpf, FORMAT_CPF);
+    }
+
+    /**
+     * Formats a string as CNPJ.
+     *
+     * @param cnpj Unformatted CNPJ string (only digits)
+     * @return Formatted CNPJ string (e.g., 12.345.678/0001-99)
+     */
+    public static String formatCNPJ(String cnpj) {
+        if (cnpj == null) return "";
+        String unmaskedCnpj = unmask(cnpj); // Remove any existing formatting
+        return applyMask(unmaskedCnpj, FORMAT_CNPJ);
+    }
+
+    /**
+     * Formats a date string in ISO 8601 format to "HH:MM, DD/MM/YYYY".
+     *
+     * @param isoDate The ISO 8601 date string (e.g., "2024-11-20T21:05:24.230Z")
+     * @return Formatted date string or an empty string if parsing fails
+     */
+    public static String formatIsoDate(String isoDate) {
+        if (isoDate == null || isoDate.isEmpty()) return "";
+
+        // Input and output date formats
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm, dd/MM/yyyy");
+
+        try {
+            // Parse the input date string
+            inputFormat.setTimeZone(TimeZone.getTimeZone("UTC")); // ISO 8601 is in UTC
+            Date date = inputFormat.parse(isoDate);
+
+            // Format to desired output
+            return outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return ""; // Return empty string if parsing fails
+        }
     }
 
     public static Double parseMoneyToDouble(String formattedValue) {

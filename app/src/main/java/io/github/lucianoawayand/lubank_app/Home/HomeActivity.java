@@ -27,6 +27,7 @@ import io.github.lucianoawayand.lubank_app.Home.model.Action;
 import io.github.lucianoawayand.lubank_app.Main.MainActivity;
 import io.github.lucianoawayand.lubank_app.R;
 import io.github.lucianoawayand.lubank_app.Home.adapter.ActionsAdapter;
+import io.github.lucianoawayand.lubank_app.Transactions.ListTransactionsActivity;
 import io.github.lucianoawayand.lubank_app.Transactions.SendTransactionActivity;
 import io.github.lucianoawayand.lubank_app.UnderDevelopment.UnderDevelopmentActivity;
 import io.github.lucianoawayand.lubank_app.shared.config.RetrofitClient;
@@ -84,6 +85,7 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(actionsAdapter);
 
         setupCardClickListener();
+        setupListTransactionsClickListener();
 
         setAccountBalance();
 
@@ -102,6 +104,14 @@ public class HomeActivity extends AppCompatActivity {
         View cardClickableLayout = findViewById(R.id.cardClickableLayout);
         cardClickableLayout.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, UnderDevelopmentActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void setupListTransactionsClickListener() {
+        View listTransactionsClickableLayout = findViewById(R.id.extractClickableLayout);
+        listTransactionsClickableLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, ListTransactionsActivity.class);
             startActivity(intent);
         });
     }

@@ -207,8 +207,8 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("jwt_token", token);
                         Gson gson = new Gson();
-                        String userJson = gson.toJson(user); // Serialize User to JSON
-                        editor.putString("user", userJson);  // Save JSON string
+                        String userJson = gson.toJson(user);
+                        editor.putString("user", userJson);
                         editor.apply();
 
                         SharedPreferences securePrefs = getEncryptedSharedPreferences();

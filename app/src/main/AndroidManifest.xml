@@ -22,6 +22,9 @@
             android:name=".Transactions.SendTransactionActivity"
             android:exported="false" />
         <activity
+            android:name=".Transactions.ListTransactionsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Register.RegisterActivity"
             android:exported="false" />
         <activity

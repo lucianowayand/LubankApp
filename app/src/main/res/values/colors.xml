@@ -13,5 +13,7 @@
     <color name="air_force_blue">#00308F</color>
     <color name="carolina_blue">#4B9CD3</color>
     <color name="boeing_blue">#0039a6</color>
+    <color name="light_green">#d9ffdb</color>
+    <color name="light_red">#ffd9d9</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
