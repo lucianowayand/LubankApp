@@ -119,10 +119,10 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<Action> createActionsList() {
         ArrayList<Action> actions = new ArrayList<>();
 
-        actions.add(new Action(R.drawable.transfer, "Transferir", SendTransactionActivity.class));
-        actions.add(new Action(R.drawable.ic_dollasign, "Fazer depósito", DepositsActivity.class));
-        actions.add(new Action(R.drawable.barcode, "Pagar boleto", UnderDevelopmentActivity.class));
-        actions.add(new Action(R.drawable.withdraw, "Sacar dinheiro", UnderDevelopmentActivity.class));
+        actions.add(new Action(R.drawable.transfer, "Transferência", SendTransactionActivity.class));
+        actions.add(new Action(R.drawable.ic_dollasign, "Depósitos", DepositsActivity.class));
+        actions.add(new Action(R.drawable.barcode, "Pagamentos", UnderDevelopmentActivity.class));
+        actions.add(new Action(R.drawable.withdraw, "Saque", UnderDevelopmentActivity.class));
 
         return actions;
     }

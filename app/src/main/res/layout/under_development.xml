@@ -19,7 +19,7 @@
         android:layout_marginBottom="6dp"
         android:text="@string/title_under_development"
         android:textColor="@color/black"
-        android:textSize="23sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
@@ -30,7 +30,7 @@
         android:gravity="center"
         android:text="@string/txt_under_development"
         android:textColor="@color/dark_gray"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <Button
