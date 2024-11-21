@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">LubankApp</string>
-    <string name="app_icon_desc">Logo do aplicativo</string>
+    <string name="app_name">Lubank</string>
+    <string name="app_icon_desc">LU</string>
 
     <string name="id_doc_label">Documento de Identificação</string>
     <string name="id_doc_hint">CPF</string>
