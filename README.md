@@ -15,7 +15,7 @@ If you want to send money to another account, just use the feature "Transferênc
 * Java 17 or higher
 * Gradle
 
-### Installation (Local)
+### Installation
 1. Clone the repository:
 ```shell
 git clone https://github.com/lucianowayand/LubankApp.git
