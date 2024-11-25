@@ -18,7 +18,7 @@ If you want to send money to another account, just use the feature "Transferênc
 ### Installation (Local)
 1. Clone the repository:
 ```shell
-git clone [https://github.com/lucianowayand/lubank.git](https://github.com/lucianowayand/LubankApp.git)
+git clone https://github.com/lucianowayand/LubankApp.git
 cd LubankApi
 ```
 
