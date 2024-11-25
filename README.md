@@ -4,7 +4,9 @@
 Lubank is an android application that simulates a digital bank. The project uses Java 17.
 
 ### Main features
-You can create an account using CPF or CNPJ unique codes. By simulating a deposit, you can get money on your Lubank account.
+You can create an account using CPF or CNPJ unique codes. The user has the possibility to login using its configured digital. 
+
+By simulating a deposit, you can get money on your Lubank account. Once done, swipe down on the home screen to refresh your balance.
 
 If you want to send money to another account, just use the feature "Transferência". Later, you can check all transactions by the "Extrato" button.
 
